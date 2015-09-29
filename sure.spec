@@ -4,7 +4,7 @@
 #
 Name     : sure
 Version  : 1.2.24
-Release  : 10
+Release  : 11
 URL      : https://pypi.python.org/packages/source/s/sure/sure-1.2.24.tar.gz
 Source0  : https://pypi.python.org/packages/source/s/sure/sure-1.2.24.tar.gz
 Summary  : utility belt for automated testing in python for python
