@@ -4,13 +4,14 @@
 #
 Name     : sure
 Version  : 1.2.24
-Release  : 11
+Release  : 12
 URL      : https://pypi.python.org/packages/source/s/sure/sure-1.2.24.tar.gz
 Source0  : https://pypi.python.org/packages/source/s/sure/sure-1.2.24.tar.gz
 Summary  : utility belt for automated testing in python for python
 Group    : Development/Tools
 License  : GPL-3.0+
 Requires: sure-python
+BuildRequires : funcsigs-python
 BuildRequires : nose
 BuildRequires : pbr
 BuildRequires : pip
@@ -47,7 +48,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 python2 setup.py test
 %install
 rm -rf %{buildroot}
-python2 setup.py build -b py2 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot}
 
 %files
 %defattr(-,root,root,-)
