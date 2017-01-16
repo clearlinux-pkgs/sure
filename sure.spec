@@ -4,14 +4,13 @@
 #
 Name     : sure
 Version  : 1.4.0
-Release  : 20
+Release  : 21
 URL      : http://pypi.debian.net/sure/sure-1.4.0.tar.gz
 Source0  : http://pypi.debian.net/sure/sure-1.4.0.tar.gz
 Summary  : utility belt for automated testing in python for python
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
 Requires: sure-python
-BuildRequires : funcsigs-python
 BuildRequires : nose
 BuildRequires : pbr
 BuildRequires : pip
@@ -46,6 +45,7 @@ python components for the sure package.
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1484578292
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -55,9 +55,10 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test
 %install
+export SOURCE_DATE_EPOCH=1484578292
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot}
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 
 %files
 %defattr(-,root,root,-)
