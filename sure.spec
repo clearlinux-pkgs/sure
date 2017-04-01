@@ -4,7 +4,7 @@
 #
 Name     : sure
 Version  : 1.4.4
-Release  : 25
+Release  : 26
 URL      : http://pypi.debian.net/sure/sure-1.4.4.tar.gz
 Source0  : http://pypi.debian.net/sure/sure-1.4.4.tar.gz
 Summary  : utility belt for automated testing in python for python
@@ -46,7 +46,7 @@ python components for the sure package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1490283545
+export SOURCE_DATE_EPOCH=1491059002
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -56,7 +56,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1490283545
+export SOURCE_DATE_EPOCH=1491059002
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
