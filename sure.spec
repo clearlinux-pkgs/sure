@@ -4,12 +4,13 @@
 #
 Name     : sure
 Version  : 1.4.6
-Release  : 29
+Release  : 30
 URL      : http://pypi.debian.net/sure/sure-1.4.6.tar.gz
 Source0  : http://pypi.debian.net/sure/sure-1.4.6.tar.gz
 Summary  : utility belt for automated testing in python for python
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
+Requires: sure-legacypython
 Requires: sure-python
 Requires: python-mock
 Requires: six
@@ -28,14 +29,22 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-sure
 ====
-An idiomatic testing library for python with powerful and flexible assertions. Sure
-is heavily inspired in `RSpec Expectations <http://rspec.info/documentation/3.5/rspec-expectations/>`_ and `should.js <https://github.com/shouldjs/should.js>`_
+        
+        An idiomatic testing library for python with powerful and flexible assertions. Sure
+
+%package legacypython
+Summary: legacypython components for the sure package.
+Group: Default
+
+%description legacypython
+legacypython components for the sure package.
+
 
 %package python
 Summary: python components for the sure package.
 Group: Default
+Requires: sure-legacypython
 
 %description python
 python components for the sure package.
@@ -49,7 +58,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494264675
+export SOURCE_DATE_EPOCH=1505072139
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -59,7 +68,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1494264675
+export SOURCE_DATE_EPOCH=1505072139
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -70,7 +79,10 @@ echo ----[ mark ]----
 %files
 %defattr(-,root,root,-)
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
