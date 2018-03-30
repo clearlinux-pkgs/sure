@@ -4,7 +4,7 @@
 #
 Name     : sure
 Version  : 1.4.7
-Release  : 35
+Release  : 36
 URL      : http://pypi.debian.net/sure/sure-1.4.7.tar.gz
 Source0  : http://pypi.debian.net/sure/sure-1.4.7.tar.gz
 Summary  : utility belt for automated testing in python for python
@@ -25,7 +25,9 @@ BuildRequires : python-dev
 BuildRequires : python-mock
 BuildRequires : python3-dev
 BuildRequires : setuptools
+BuildRequires : setuptools-legacypython
 BuildRequires : six
+BuildRequires : six-legacypython
 BuildRequires : tox
 BuildRequires : virtualenv
 
@@ -46,7 +48,6 @@ legacypython components for the sure package.
 %package python
 Summary: python components for the sure package.
 Group: Default
-Requires: sure-legacypython
 Requires: sure-python3
 
 %description python
@@ -70,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507179716
+export SOURCE_DATE_EPOCH=1522379332
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -80,7 +81,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1507179716
+export SOURCE_DATE_EPOCH=1522379332
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force

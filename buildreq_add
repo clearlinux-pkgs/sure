@@ -3,3 +3,5 @@
 six
 python-mock
 nose
+setuptools-legacypython
+six-legacypython
