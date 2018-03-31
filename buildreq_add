@@ -5,3 +5,5 @@ python-mock
 nose
 setuptools-legacypython
 six-legacypython
+python-mock-legacypython
+pbr-legacypython
