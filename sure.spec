@@ -4,7 +4,7 @@
 #
 Name     : sure
 Version  : 1.4.11
-Release  : 54
+Release  : 55
 URL      : http://pypi.debian.net/sure/sure-1.4.11.tar.gz
 Source0  : http://pypi.debian.net/sure/sure-1.4.11.tar.gz
 Summary  : utility belt for automated testing in python for python
@@ -26,10 +26,9 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-sure
 ====
-An idiomatic testing library for python with powerful and flexible assertions. Sure
-is heavily inspired in `RSpec Expectations <http://rspec.info/documentation/3.5/rspec-expectations/>`_ and `should.js <https://github.com/shouldjs/should.js>`_
+        
+        An idiomatic testing library for python with powerful and flexible assertions. Sure
 
 %package license
 Summary: license components for the sure package.
@@ -59,13 +58,19 @@ python3 components for the sure package.
 
 %prep
 %setup -q -n sure-1.4.11
+cd %{_builddir}/sure-1.4.11
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551039585
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1576016681
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -73,11 +78,12 @@ python3 setup.py build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test || :
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/sure
-cp COPYING %{buildroot}/usr/share/package-licenses/sure/COPYING
+cp %{_builddir}/sure-1.4.11/COPYING %{buildroot}/usr/share/package-licenses/sure/3e84b7f9cd57d06313a7a5e99cb5a6ec2a55be25
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -88,7 +94,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/sure/COPYING
+/usr/share/package-licenses/sure/3e84b7f9cd57d06313a7a5e99cb5a6ec2a55be25
 
 %files python
 %defattr(-,root,root,-)
