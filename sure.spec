@@ -4,7 +4,7 @@
 #
 Name     : sure
 Version  : 1.4.11
-Release  : 58
+Release  : 59
 URL      : http://pypi.debian.net/sure/sure-1.4.11.tar.gz
 Source0  : http://pypi.debian.net/sure/sure-1.4.11.tar.gz
 Summary  : utility belt for automated testing in python for python
@@ -26,75 +26,9 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-sure
 ====
-
-An idiomatic testing library for python with powerful and flexible assertions. Sure
-is heavily inspired in `RSpec Expectations <http://rspec.info/documentation/3.5/rspec-expectations/>`_ and `should.js <https://github.com/shouldjs/should.js>`_
-
-|Build Status| |PyPI package version| |PyPI python versions| |Join the chat at https://gitter.im/gabrielfalcao/sure|
-
-
-Installing
-----------
-
-.. code:: bash
-
-    $ pip install sure
-
-Documentation
--------------
-
-Available in the `website <https://sure.readthedocs.io/en/latest/>`__ or under the
-``docs`` directory.
-
-You can also build the documentation locally using sphinx:
-
-.. code:: bash
-
-    make docs
-
-Here is a tease
----------------
-
-Equality
-~~~~~~~~
-
-(number).should.equal(number)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code:: python
-
-    import sure
-
-    (4).should.be.equal(2 + 2)
-    (7.5).should.eql(3.5 + 4)
-
-    (3).shouldnt.be.equal(5)
-
-Assert dictionary and its contents
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code:: python
-
-    {'foo': 'bar'}.should.equal({'foo': 'bar'})
-    {'foo': 'bar'}.should.have.key('foo').which.should.equal('bar')
-
-"A string".lower().should.equal("a string") also works
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code:: python
-
-    "Awesome ASSERTIONS".lower().split().should.equal(['awesome', 'assertions'])
-
-.. |Build Status| image:: https://travis-ci.org/gabrielfalcao/sure.png?branch=master
-   :target: https://travis-ci.org/gabrielfalcao/sure
-.. |PyPI package version| image:: https://badge.fury.io/py/sure.svg
-   :target: https://badge.fury.io/py/sure
-.. |PyPI python versions| image:: https://img.shields.io/pypi/pyversions/sure.svg
-   :target: https://pypi.python.org/pypi/sure
-.. |Join the chat at https://gitter.im/gabrielfalcao/sure| image:: https://badges.gitter.im/gabrielfalcao/sure.svg
-   :target: https://gitter.im/gabrielfalcao/sure?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+        
+        An idiomatic testing library for python with powerful and flexible assertions. Sure
 
 %package license
 Summary: license components for the sure package.
@@ -118,6 +52,8 @@ Summary: python3 components for the sure package.
 Group: Default
 Requires: python3-core
 Provides: pypi(sure)
+Requires: pypi(mock)
+Requires: pypi(six)
 
 %description python3
 python3 components for the sure package.
@@ -132,12 +68,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582914726
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1603405315
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
