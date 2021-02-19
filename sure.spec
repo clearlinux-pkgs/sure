@@ -4,7 +4,7 @@
 #
 Name     : sure
 Version  : 1.4.11
-Release  : 62
+Release  : 63
 URL      : http://pypi.debian.net/sure/sure-1.4.11.tar.gz
 Source0  : http://pypi.debian.net/sure/sure-1.4.11.tar.gz
 Summary  : utility belt for automated testing in python for python
